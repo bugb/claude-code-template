@@ -94,7 +94,7 @@ The `<body>` contains all visible content:
 - **`<img>`**: Self-closing image element with required `alt` attribute
 - **`<script>`**: Links JavaScript files
   - Usually placed at the end of `<body>` for better performance
-  - Allows DOM to load before script execution
+  - Allows DOM to load before script execution (The DOM is fully loaded before the script runs, You don’t need DOMContentLoaded or defer to safely manipulate elements.)
 
 # Common HTML Elements
 
@@ -109,13 +109,118 @@ The `<body>` contains all visible content:
 
 ## Structural Elements (HTML5)
 
-- **`<header>`**: Page or section header
-- **`<nav>`**: Navigation links
-- **`<main>`**: Main content (one per page)
-- **`<section>`**: Thematic grouping
-- **`<article>`**: Self-contained content
-- **`<aside>`**: Sidebar or related content
-- **`<footer>`**: Page or section footer
+### When to Use Each Semantic Element
+
+#### `<header>`
+- Use for introductory content (headings, logos, navigation)
+- Can be used within sections, not just for the entire page
+- Often contains `<h1>`-`<h6>`, `<nav>`, or publication date
+
+#### `<nav>`
+- Use for major navigation blocks
+- Site-wide navigation, table of contents, or pagination
+- No need to declare a role attribute (implied by the tag)
+
+#### `<main>`
+- The main content area of the document
+- Use only once per page
+- Should not include repeated content like headers or footers
+- Replace generic `<div id="main">` with this semantic tag
+
+#### `<section>`
+- Use for thematic grouping of content
+- Should typically contain a heading element
+- More generic than `<article>`
+- Good for chapters, tabbed content, or numbered sections
+
+#### `<article>`
+- Use for self-contained, stand-alone content
+- Should make sense when distributed independently
+- Examples: blog posts, news articles, user comments, product cards
+- Can contain `<header>`, `<footer>`, and other `<section>` elements
+
+#### `<aside>`
+- Use for content tangentially related to main content
+- Sidebars, pull quotes, advertisements, or related links
+- Should be meaningful even if removed from main content
+
+#### `<footer>`
+- Use for footer content of a section or page
+- Not limited to copyright information
+- Can contain author info, related links, or metadata
+- Can be used within `<article>` or `<section>` elements
+
+### Figure and Caption Elements
+
+#### `<figure>` and `<figcaption>`
+- `<figure>` wraps self-contained content like images, diagrams, code snippets
+- Does not contribute to document outline
+- `<figcaption>` provides a caption or legend
+- Place `<figcaption>` as first or last child of `<figure>`
+
+Example:
+```html
+<figure>
+  <img src="chart.png" alt="Sales chart for 2024">
+  <figcaption>Figure 1: Annual sales showing 25% growth</figcaption>
+</figure>
+```
+
+### Semantic Structure Example
+
+```html
+<body>
+  <header>
+    <h1>My Website</h1>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <article>
+      <header>
+        <h2>Article Title</h2>
+        <time datetime="2024-01-15">January 15, 2024</time>
+      </header>
+      
+      <section>
+        <h3>Introduction</h3>
+        <p>Article introduction text...</p>
+      </section>
+      
+      <section>
+        <h3>Main Content</h3>
+        <p>Main article content...</p>
+        
+        <figure>
+          <img src="example.jpg" alt="Example image">
+          <figcaption>An example illustration</figcaption>
+        </figure>
+      </section>
+      
+      <footer>
+        <p>Written by John Doe</p>
+      </footer>
+    </article>
+    
+    <aside>
+      <h3>Related Articles</h3>
+      <ul>
+        <li><a href="#">Related Article 1</a></li>
+        <li><a href="#">Related Article 2</a></li>
+      </ul>
+    </aside>
+  </main>
+  
+  <footer>
+    <p>&copy; 2024 My Website. All rights reserved.</p>
+  </footer>
+</body>
+```
 
 ## Lists
 
@@ -140,11 +245,103 @@ The `<body>` contains all visible content:
 
 # Best Practices
 
+## Core Principles
+
 1. **Semantic HTML**: Use elements for their meaning, not appearance
 2. **Accessibility**: Always include `alt` attributes for images
 3. **Valid HTML**: Close all tags properly and nest correctly
 4. **Performance**: Place scripts at the end of body
 5. **SEO**: Use proper heading hierarchy and meta tags
+
+## HTML5 Syntax Rules
+
+### Document Structure
+- Always start with `<!DOCTYPE html>` declaration
+- Include language attribute: `<html lang="en">` or `<html lang="en-us">`
+- Always use `<head>` and `<body>` tags (even though technically optional)
+- Include viewport meta tag for responsive design: `<meta name="viewport" content="width=device-width, initial-scale=1.0">`
+
+### Naming Conventions
+- **Use lowercase** for all element names: `<section>`, not `<SECTION>`
+- **Use lowercase** for attribute names: `class="header"`, not `CLASS="header"`
+- **Always quote attribute values**: `class="my-class"`, not `class=my-class`
+- **Use lowercase for file names**: `index.html`, not `Index.HTML`
+- **Use `.html` file extension** (not `.htm`)
+
+### Code Formatting
+- **Indentation**: Use 2 spaces (or consistent tabs)
+- **Line length**: Avoid lines longer than 80 characters
+- **Blank lines**: Separate logical blocks for readability
+- **Closing tags**: Close all elements, even optional ones (`</p>`, `</li>`)
+
+Example of well-formatted HTML5:
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Title</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Main Heading</h1>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <article>
+      <h2>Article Title</h2>
+      <p>Content paragraph with proper formatting.</p>
+    </article>
+  </main>
+  
+  <footer>
+    <p>&copy; 2025 Your Company</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
+```
+
+## Advanced Best Practices
+
+### Metadata and SEO
+- Place `<meta charset="UTF-8">` as early as possible in `<head>`
+- Use descriptive, unique `<title>` tags (50-60 characters)
+- Add meaningful meta descriptions
+- Include Open Graph tags for social sharing
+
+### Images and Media
+- Always specify `width` and `height` attributes to prevent layout shift
+- Use descriptive `alt` text for accessibility and SEO
+- Provide fallback content for `<video>` and `<audio>` elements
+
+### Links and Navigation
+- Use descriptive link text (avoid "click here")
+- Add `title` attributes for additional context when needed
+- Use `rel="noopener"` for external links opening in new tabs
+
+### Forms and Inputs
+- Always associate labels with form controls
+- Use appropriate input types (`email`, `tel`, `number`, etc.)
+- Include proper validation attributes
+
+### Comments and Documentation
+- Use comments sparingly and only when necessary
+- Keep comments concise and meaningful
+- Remove commented-out code before production
+
+### Validation
+- Regularly validate HTML using [W3C Markup Validator](https://validator.w3.org/)
+- Fix all errors and warnings
+- Test across different browsers and devices
 
 # Reference Links
 
@@ -153,3 +350,5 @@ The `<body>` contains all visible content:
 - [Structuring Content with HTML](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content)
 - [HTML5 Semantic Elements](https://www.w3schools.com/html/html5_semantic_elements.asp)
 - [Web Accessibility Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
+- [HTML best practices by hail2u](https://github.com/hail2u/html-best-practices)
+- [HTML tips](https://markodenic.com/html-tips/)
