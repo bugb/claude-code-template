@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Forms & Inputs - Interactive Demo</title>
+  <style id="demo-styles">
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      color: #2c3e50;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .form-section {
+      background: white;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .form-section h2 {
+      color: #3498db;
+      margin-top: 0;
+      border-bottom: 2px solid #ecf0f1;
+      padding-bottom: 0.5rem;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+      color: #555;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="number"],
+    input[type="tel"],
+    input[type="url"],
+    input[type="search"],
+    input[type="date"],
+    input[type="time"],
+    input[type="color"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+    
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #3498db;
+      box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+    }
+    
+    input[type="radio"],
+    input[type="checkbox"] {
+      margin-right: 0.5rem;
+    }
+    
+    .radio-group,
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .radio-group label,
+    .checkbox-group label {
+      font-weight: normal;
+      display: flex;
+      align-items: center;
+    }
+    
+    button {
+      background-color: #3498db;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    button:hover {
+      background-color: #2980b9;
+    }
+    
+    button[type="reset"] {
+      background-color: #95a5a6;
+      margin-left: 0.5rem;
+    }
+    
+    button[type="reset"]:hover {
+      background-color: #7f8c8d;
+    }
+    
+    .code-snippet {
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      padding: 1rem;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      margin-top: 1rem;
+    }
+    
+    .validation-demo input:invalid {
+      border-color: #e74c3c;
+    }
+    
+    .validation-demo input:valid {
+      border-color: #27ae60;
+    }
+    
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: #3498db;
+      text-decoration: none;
+    }
+    
+    .back-link:hover {
+      text-decoration: underline;
+    }
+    
+    .output {
+      background-color: #ecf0f1;
+      padding: 1rem;
+      border-radius: 4px;
+      margin-top: 1rem;
+      font-family: monospace;
+    }
+    
+    fieldset {
+      border: 2px solid #ecf0f1;
+      border-radius: 4px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    legend {
+      font-weight: bold;
+      color: #3498db;
+      padding: 0 0.5rem;
+    }
+    
+    .hint {
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 0.25rem;
+    }
+    
+    /* CSS Toggle Button - Eye-catching Design */
+    .css-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 12px 20px;
+      border: 3px solid #ffffff;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      z-index: 1000;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      animation: pulseGlow 2s infinite;
+    }
+    
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 8px 35px rgba(102, 126, 234, 0.6);
+        transform: scale(1.02);
+      }
+    }
+    
+    .css-toggle:hover {
+      background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+      transform: scale(1.05);
+      box-shadow: 0 12px 40px rgba(102, 126, 234, 0.6);
+      animation: none;
+    }
+    
+    .css-toggle.css-disabled {
+      background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+      box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+      animation: pulseGlowRed 2s infinite;
+    }
+    
+    @keyframes pulseGlowRed {
+      0%, 100% {
+        box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 8px 35px rgba(255, 107, 107, 0.6);
+        transform: scale(1.02);
+      }
+    }
+    
+    .css-toggle.css-disabled:hover {
+      background: linear-gradient(135deg, #ee5a24 0%, #ff6b6b 100%);
+      box-shadow: 0 12px 40px rgba(255, 107, 107, 0.6);
+      animation: none;
+    }
+    
+    .css-toggle::before {
+      content: '🎨 ';
+      margin-right: 5px;
+    }
+    
+    .css-toggle.css-disabled::before {
+      content: '📄 ';
+    }
+    
+    input[type="range"] {
+      width: 100%;
+    }
+    
+    .range-value {
+      display: inline-block;
+      margin-left: 1rem;
+      font-weight: bold;
+      color: #3498db;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-link">← Back to Demos</a>
+    <button class="css-toggle" onclick="toggleCSS()">CSS: ON</button>
+    
+    <h1>HTML Forms & Inputs Demo</h1>
+    
+    <!-- Basic Form Elements -->
+    <div class="form-section">
+      <h2>Basic Form Elements</h2>
+      <form id="basicForm">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" placeholder="Enter your username" required>
+          <span class="hint">Required field with placeholder text</span>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" placeholder="user@example.com" required>
+          <span class="hint">Email input with built-in validation</span>
+        </div>
+        
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" minlength="8" required>
+          <span class="hint">Minimum 8 characters required</span>
+        </div>
+        
+        <div class="form-group">
+          <label for="bio">Bio:</label>
+          <textarea id="bio" name="bio" rows="4" placeholder="Tell us about yourself..."></textarea>
+        </div>
+        
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+      </form>
+      
+      <div class="code-snippet">
+&lt;form&gt;
+  &lt;label for="username"&gt;Username:&lt;/label&gt;
+  &lt;input type="text" id="username" name="username" required&gt;
+  
+  &lt;label for="email"&gt;Email:&lt;/label&gt;
+  &lt;input type="email" id="email" name="email" required&gt;
+&lt;/form&gt;
+      </div>
+    </div>
+    
+    <!-- Input Types -->
+    <div class="form-section">
+      <h2>HTML5 Input Types</h2>
+      <form>
+        <div class="form-group">
+          <label for="number">Number:</label>
+          <input type="number" id="number" name="number" min="0" max="100" step="5">
+          <span class="hint">Min: 0, Max: 100, Step: 5</span>
+        </div>
+        
+        <div class="form-group">
+          <label for="tel">Phone:</label>
+          <input type="tel" id="tel" name="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890">
+          <span class="hint">Pattern: 123-456-7890</span>
+        </div>
+        
+        <div class="form-group">
+          <label for="url">Website:</label>
+          <input type="url" id="url" name="url" placeholder="https://example.com">
+        </div>
+        
+        <div class="form-group">
+          <label for="date">Date:</label>
+          <input type="date" id="date" name="date">
+        </div>
+        
+        <div class="form-group">
+          <label for="time">Time:</label>
+          <input type="time" id="time" name="time">
+        </div>
+        
+        <div class="form-group">
+          <label for="color">Favorite Color:</label>
+          <input type="color" id="color" name="color" value="#3498db">
+        </div>
+        
+        <div class="form-group">
+          <label for="range">Volume:</label>
+          <input type="range" id="range" name="range" min="0" max="100" value="50" oninput="document.getElementById('rangeValue').textContent = this.value">
+          <span class="range-value" id="rangeValue">50</span>
+        </div>
+        
+        <div class="form-group">
+          <label for="search">Search:</label>
+          <input type="search" id="search" name="search" placeholder="Search...">
+        </div>
+      </form>
+    </div>
+    
+    <!-- Selection Elements -->
+    <div class="form-section">
+      <h2>Selection Elements</h2>
+      <form>
+        <fieldset>
+          <legend>Choose your plan</legend>
+          <div class="radio-group">
+            <label>
+              <input type="radio" name="plan" value="basic" checked>
+              Basic Plan - $9.99/month
+            </label>
+            <label>
+              <input type="radio" name="plan" value="pro">
+              Pro Plan - $19.99/month
+            </label>
+            <label>
+              <input type="radio" name="plan" value="enterprise">
+              Enterprise Plan - $49.99/month
+            </label>
+          </div>
+        </fieldset>
+        
+        <fieldset>
+          <legend>Select features</legend>
+          <div class="checkbox-group">
+            <label>
+              <input type="checkbox" name="features" value="ssl" checked>
+              SSL Certificate
+            </label>
+            <label>
+              <input type="checkbox" name="features" value="cdn">
+              CDN Integration
+            </label>
+            <label>
+              <input type="checkbox" name="features" value="analytics">
+              Advanced Analytics
+            </label>
+          </div>
+        </fieldset>
+        
+        <div class="form-group">
+          <label for="country">Country:</label>
+          <select id="country" name="country">
+            <option value="">Select a country</option>
+            <option value="us">United States</option>
+            <option value="uk">United Kingdom</option>
+            <option value="ca">Canada</option>
+            <option value="au">Australia</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="skills">Skills (multiple selection):</label>
+          <select id="skills" name="skills" multiple size="5">
+            <option value="html">HTML</option>
+            <option value="css">CSS</option>
+            <option value="js">JavaScript</option>
+            <option value="react">React</option>
+            <option value="node">Node.js</option>
+          </select>
+          <span class="hint">Hold Ctrl/Cmd to select multiple</span>
+        </div>
+      </form>
+    </div>
+    
+    <!-- Advanced Features -->
+    <div class="form-section">
+      <h2>Advanced Form Features</h2>
+      <form class="validation-demo">
+        <div class="form-group">
+          <label for="autocomplete">City (with datalist):</label>
+          <input type="text" id="autocomplete" list="cities" placeholder="Start typing...">
+          <datalist id="cities">
+            <option value="New York">
+            <option value="Los Angeles">
+            <option value="Chicago">
+            <option value="Houston">
+            <option value="Phoenix">
+          </datalist>
+        </div>
+        
+        <div class="form-group">
+          <label for="file">Upload File:</label>
+          <input type="file" id="file" name="file" accept="image/*">
+          <span class="hint">Only image files accepted</span>
+        </div>
+        
+        <fieldset>
+          <legend>Validation Examples</legend>
+          
+          <div class="form-group">
+            <label for="age">Age (18-100):</label>
+            <input type="number" id="age" name="age" min="18" max="100" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="username2">Username (alphanumeric, 3-16 chars):</label>
+            <input type="text" id="username2" name="username2" pattern="[a-zA-Z0-9]{3,16}" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="website">Website (must start with https):</label>
+            <input type="url" id="website" name="website" pattern="https://.*" required>
+          </div>
+        </fieldset>
+        
+        <button type="submit">Validate & Submit</button>
+      </form>
+      
+      <div class="output" id="output" style="display: none;">
+        <strong>Form submitted!</strong>
+        <div id="formData"></div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Handle form submissions
+    document.getElementById('basicForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Basic form submitted! (Check console for form data)');
+      const formData = new FormData(this);
+      console.log('Form Data:', Object.fromEntries(formData));
+    });
+    
+    // Show validation messages
+    document.querySelector('.validation-demo').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const output = document.getElementById('output');
+      const formDataDiv = document.getElementById('formData');
+      
+      output.style.display = 'block';
+      formDataDiv.innerHTML = '<p>All validations passed!</p>';
+      
+      const formData = new FormData(this);
+      for (let [key, value] of formData.entries()) {
+        formDataDiv.innerHTML += `<p><strong>${key}:</strong> ${value}</p>`;
+      }
+    });
+    
+    // CSS Toggle function
+    function toggleCSS() {
+      const styleElement = document.getElementById('demo-styles');
+      const toggleButton = document.querySelector('.css-toggle');
+      
+      if (styleElement.disabled) {
+        styleElement.disabled = false;
+        toggleButton.textContent = 'CSS: ON';
+        toggleButton.classList.remove('css-disabled');
+      } else {
+        styleElement.disabled = true;
+        toggleButton.textContent = 'CSS: OFF';
+        toggleButton.classList.add('css-disabled');
+      }
+    }
+  </script>
+</body>
+</html>

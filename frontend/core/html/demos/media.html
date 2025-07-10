@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Elements - HTML Demo</title>
+  <link rel="stylesheet" href="demo-styles.css">
+  <style id="demo-styles">
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    
+    .media-example {
+      text-align: center;
+    }
+    
+    .media-example img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    figure {
+      margin: 0;
+      padding: 1rem;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+    }
+    
+    figcaption {
+      margin-top: 0.5rem;
+      font-style: italic;
+      color: #666;
+    }
+    
+    audio, video {
+      width: 100%;
+      max-width: 100%;
+      border-radius: 4px;
+    }
+    
+    .picture-demo img {
+      display: block;
+      margin: 0 auto;
+    }
+    
+    /* CSS Toggle Button - Eye-catching Design */
+    .css-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 12px 20px;
+      border: 3px solid #ffffff;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      z-index: 1000;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      animation: pulseGlow 2s infinite;
+    }
+    
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 8px 35px rgba(102, 126, 234, 0.6);
+        transform: scale(1.02);
+      }
+    }
+    
+    .css-toggle:hover {
+      background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+      transform: scale(1.05);
+      box-shadow: 0 12px 40px rgba(102, 126, 234, 0.6);
+      animation: none;
+    }
+    
+    .css-toggle.css-disabled {
+      background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+      box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+      animation: pulseGlowRed 2s infinite;
+    }
+    
+    @keyframes pulseGlowRed {
+      0%, 100% {
+        box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 8px 35px rgba(255, 107, 107, 0.6);
+        transform: scale(1.02);
+      }
+    }
+    
+    .css-toggle.css-disabled:hover {
+      background: linear-gradient(135deg, #ee5a24 0%, #ff6b6b 100%);
+      box-shadow: 0 12px 40px rgba(255, 107, 107, 0.6);
+      animation: none;
+    }
+    
+    .css-toggle::before {
+      content: '🎨 ';
+      margin-right: 5px;
+    }
+    
+    .css-toggle.css-disabled::before {
+      content: '📄 ';
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-link">← Back to Demos</a>
+    <button class="css-toggle" onclick="toggleCSS()">CSS: ON</button>
+    
+    <h1>HTML Media Elements Demo</h1>
+    
+    <div class="demo-section">
+      <h2>Images with Different Formats</h2>
+      
+      <div class="media-grid">
+        <div class="media-example">
+          <h3>Basic Image</h3>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Crect width='300' height='200' fill='%233498db'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='20' fill='white' text-anchor='middle' dominant-baseline='middle'%3EBasic Image%3C/text%3E%3C/svg%3E" 
+               alt="A blue rectangle with text">
+          <div class="code-preview">
+&lt;img src="image.jpg" alt="Description"&gt;
+          </div>
+        </div>
+        
+        <div class="media-example">
+          <h3>Image with Dimensions</h3>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Crect width='300' height='200' fill='%2327ae60'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='18' fill='white' text-anchor='middle' dominant-baseline='middle'%3E300x200%3C/text%3E%3C/svg%3E" 
+               alt="Green rectangle showing dimensions"
+               width="300" 
+               height="200">
+          <div class="code-preview">
+&lt;img src="image.jpg" alt="Description" 
+     width="300" height="200"&gt;
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="demo-section">
+      <h2>Figure with Figcaption</h2>
+      <figure>
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='300'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%233498db'/%3E%3Cstop offset='100%25' style='stop-color:%239b59b6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='300' fill='url(%23grad)'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='24' fill='white' text-anchor='middle' dominant-baseline='middle'%3EChart Example%3C/text%3E%3C/svg%3E" 
+             alt="A gradient chart example">
+        <figcaption>Figure 1: This is a chart showing gradient colors from blue to purple</figcaption>
+      </figure>
+      
+      <div class="code-preview">
+&lt;figure&gt;
+  &lt;img src="chart.png" alt="Chart description"&gt;
+  &lt;figcaption&gt;Figure 1: Chart caption&lt;/figcaption&gt;
+&lt;/figure&gt;
+      </div>
+    </div>
+    
+    <div class="demo-section">
+      <h2>Picture Element (Responsive Images)</h2>
+      <div class="picture-demo">
+        <picture>
+          <source media="(min-width: 800px)" 
+                  srcset="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='400'%3E%3Crect width='800' height='400' fill='%23e74c3c'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='30' fill='white' text-anchor='middle' dominant-baseline='middle'%3EDesktop Image (800px)%3C/text%3E%3C/svg%3E">
+          <source media="(min-width: 400px)" 
+                  srcset="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%23f39c12'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='24' fill='white' text-anchor='middle' dominant-baseline='middle'%3ETablet Image (400px)%3C/text%3E%3C/svg%3E">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Crect width='300' height='200' fill='%2327ae60'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='20' fill='white' text-anchor='middle' dominant-baseline='middle'%3EMobile Image%3C/text%3E%3C/svg%3E" 
+               alt="Responsive image example">
+        </picture>
+        <p class="explanation">
+          <strong>Try resizing your browser!</strong> The picture element loads different images based on screen size.
+        </p>
+      </div>
+      
+      <div class="code-preview">
+&lt;picture&gt;
+  &lt;source media="(min-width: 800px)" srcset="large.jpg"&gt;
+  &lt;source media="(min-width: 400px)" srcset="medium.jpg"&gt;
+  &lt;img src="small.jpg" alt="Description"&gt;
+&lt;/picture&gt;
+      </div>
+    </div>
+    
+    <div class="demo-section">
+      <h2>Audio Element</h2>
+      <audio controls>
+        <source src="data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YQAAAAA=" type="audio/wav">
+        <p>Your browser doesn't support HTML audio. Here is a <a href="#">link to the audio</a> instead.</p>
+      </audio>
+      
+      <div class="code-preview">
+&lt;audio controls&gt;
+  &lt;source src="audio.mp3" type="audio/mpeg"&gt;
+  &lt;source src="audio.ogg" type="audio/ogg"&gt;
+  Your browser doesn't support audio.
+&lt;/audio&gt;
+      </div>
+      
+      <h3>Audio Attributes</h3>
+      <ul>
+        <li><code>controls</code> - Shows playback controls</li>
+        <li><code>autoplay</code> - Starts playing automatically (use carefully!)</li>
+        <li><code>loop</code> - Loops the audio</li>
+        <li><code>muted</code> - Starts muted</li>
+        <li><code>preload</code> - How much to preload (none/metadata/auto)</li>
+      </ul>
+    </div>
+    
+    <div class="demo-section">
+      <h2>Video Element</h2>
+      <video controls width="100%" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='360'%3E%3Crect width='640' height='360' fill='%232c3e50'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='30' fill='white' text-anchor='middle' dominant-baseline='middle'%3EVideo Poster%3C/text%3E%3C/svg%3E">
+        <source src="#" type="video/mp4">
+        <track kind="subtitles" src="#" srclang="en" label="English">
+        <p>Your browser doesn't support HTML video. Here is a <a href="#">link to the video</a> instead.</p>
+      </video>
+      
+      <div class="code-preview">
+&lt;video controls width="640" height="360" poster="poster.jpg"&gt;
+  &lt;source src="video.mp4" type="video/mp4"&gt;
+  &lt;source src="video.webm" type="video/webm"&gt;
+  &lt;track kind="subtitles" src="subs.vtt" srclang="en" label="English"&gt;
+  Your browser doesn't support video.
+&lt;/video&gt;
+      </div>
+    </div>
+    
+    <div class="demo-section">
+      <h2>Embedding Content</h2>
+      
+      <h3>iframe Example</h3>
+      <iframe 
+        srcdoc="<html><body style='font-family: Arial; text-align: center; padding: 50px;'><h2>This is an embedded iframe</h2><p>It can contain any HTML content!</p></body></html>"
+        width="100%" 
+        height="200"
+        style="border: 2px solid #ddd; border-radius: 4px;">
+      </iframe>
+      
+      <div class="code-preview">
+&lt;iframe src="https://example.com" 
+        width="600" height="400"
+        title="Description"&gt;
+&lt;/iframe&gt;
+      </div>
+      
+      <h3>Embed and Object Elements</h3>
+      <div class="code-preview">
+&lt;!-- Embed element for plugins --&gt;
+&lt;embed src="file.pdf" type="application/pdf" 
+       width="600" height="400"&gt;
+
+&lt;!-- Object element with fallback --&gt;
+&lt;object data="file.pdf" type="application/pdf" 
+        width="600" height="400"&gt;
+  &lt;p&gt;Fallback: &lt;a href="file.pdf"&gt;Download PDF&lt;/a&gt;&lt;/p&gt;
+&lt;/object&gt;
+      </div>
+    </div>
+    
+    <div class="demo-section">
+      <h2>Best Practices for Media</h2>
+      <ol>
+        <li><strong>Always include alt text</strong> for images</li>
+        <li><strong>Specify dimensions</strong> to prevent layout shift</li>
+        <li><strong>Use appropriate formats</strong>:
+          <ul>
+            <li>JPEG for photos</li>
+            <li>PNG for graphics with transparency</li>
+            <li>SVG for logos and icons</li>
+            <li>WebP for modern browsers</li>
+          </ul>
+        </li>
+        <li><strong>Provide multiple sources</strong> for audio/video</li>
+        <li><strong>Include fallback content</strong> for unsupported browsers</li>
+        <li><strong>Add captions/subtitles</strong> for accessibility</li>
+        <li><strong>Optimize file sizes</strong> for performance</li>
+        <li><strong>Use lazy loading</strong> for images below the fold:
+          <div class="code-preview">
+&lt;img src="image.jpg" alt="Description" loading="lazy"&gt;
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+  
+  <script>
+    function toggleCSS() {
+      const styleElement = document.getElementById('demo-styles');
+      const toggleButton = document.querySelector('.css-toggle');
+      
+      if (styleElement.disabled) {
+        styleElement.disabled = false;
+        toggleButton.textContent = 'CSS: ON';
+        toggleButton.classList.remove('css-disabled');
+      } else {
+        styleElement.disabled = true;
+        toggleButton.textContent = 'CSS: OFF';
+        toggleButton.classList.add('css-disabled');
+      }
+    }
+  </script>
+</body>
+</html>
