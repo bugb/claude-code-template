@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run lint)",
+      "Bash(npm run test:*)",
+      "Bash(ls)",
+      "Bash(cat)",
+      "Read(~/.zshrc)",
+      "Bash(curl:*)"
+    ],
+    "deny": []
+  },
+  "env": {
+    "CLAUDE_CODE_ENABLE_TELEMETRY": "0",
+    "OTEL_METRICS_EXPORTER": "otlp"
+  }
+}
