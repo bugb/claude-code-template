@@ -1,7 +1,27 @@
 # Overview
-This document provides a structural overview of the Repomix project, designed to aid AI code assistants (like Copilot, Claude Code) in understanding the codebase.
+This document provides a structural overview of the learning-hub project, designed to aid AI code assistants (like Copilot, Claude Code) in understanding the codebase.
 
 Please refer to README.md for a complete and up-to-date project overview, and CONTRIBUTING.md for implementation guidelines and contribution procedures.
+
+# Topic-Specific Instructions
+
+**IMPORTANT**: When working on files in specific learning modules, ALWAYS read the local CLAUDE.md file first for topic-specific guidelines:
+
+- **HTML work** (files in `frontend/core/html/`): Read `frontend/core/html/CLAUDE.md`
+- **CSS work** (files in `frontend/core/css/`): Read `frontend/core/css/CLAUDE.md` 
+- **JavaScript work** (files in `frontend/core/javascript/`): Read `frontend/core/javascript/CLAUDE.md`
+- **Node.js work** (files in `backend/nodejs/`): Read `backend/nodejs/CLAUDE.md`
+- **AI work** (files in `ai/`): Read `ai/CLAUDE.md`
+- **DevOps work** (files in `devops/`): Read `devops/CLAUDE.md`
+
+These topic-specific files contain:
+- Module-specific standards and requirements
+- Demo/example structure guidelines
+- Content formatting rules
+- Educational approach for that topic
+- Quality standards and best practices
+
+**Priority order**: Topic-specific CLAUDE.md → .agents/base.md → root CLAUDE.md
 
 # Project Structure
 The project is organized into the following directories:
