@@ -2,6 +2,17 @@
 
 HTML (HyperText Markup Language) is the fundamental building block of the web. It provides the structure and content for web pages, defining elements like headings, paragraphs, links, images, and more.
 
+## 🚀 Interactive Demos
+
+Explore HTML concepts with hands-on examples:
+
+- [**View All Interactive Demos →**](demos/index.html)
+  - [Semantic Elements Demo](demos/semantic-elements.html) - See HTML5 semantic elements in action
+  - [Forms & Inputs Demo](demos/forms.html) - Interactive form elements and validation
+  - [Media Elements Demo](demos/media.html) - Images, audio, video, and more
+
+> **Note**: To view these demos online, enable GitHub Pages in your repository settings.
+
 # Key Components
 
 ## 1. Tags
