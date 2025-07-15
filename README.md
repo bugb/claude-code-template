@@ -1,3 +1,3 @@
 Learn HTML:
 
-https://bugb.github.io/learning-hub/frontend/core/html/
+https://bugb.github.io/claude-code-template/frontend/core/html/
